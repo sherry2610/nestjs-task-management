@@ -48,4 +48,11 @@ export class TasksService {
         }
     }
 
+    updateTaskStatus (id: string, status: TaskStatus): Tasks {
+        let task = this.getTaskById(id)
+        task.status = status
+
+        return task;
+    }
+
 }
