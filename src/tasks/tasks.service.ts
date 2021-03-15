@@ -29,4 +29,23 @@ export class TasksService {
 
         return newTask
     }
+
+    deleteTaskById (id: string): {message: string, status: boolean} {
+        let indexOfTaskToBeDeleted = this.tasks.findIndex(task => task.id == id)
+        if(indexOfTaskToBeDeleted!==-1){
+            this.tasks.splice(indexOfTaskToBeDeleted,1)
+        }
+        else{
+            return {
+                message: "ID not found!",
+                status: false
+            }
+        }
+
+        return {
+            message: "deleted successfully!",
+            status: true
+        }
+    }
+
 }
