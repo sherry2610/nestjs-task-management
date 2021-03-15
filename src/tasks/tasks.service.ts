@@ -56,22 +56,9 @@ export class TasksService {
         return newTask
     }
 
-    deleteTaskById (id: string): {message: string, status: boolean} {
-        let indexOfTaskToBeDeleted = this.tasks.findIndex(task => task.id == id)
-        if(indexOfTaskToBeDeleted!==-1){
-            this.tasks.splice(indexOfTaskToBeDeleted,1)
-        }
-        else{
-            return {
-                message: "ID not found!",
-                status: false
-            }
-        }
-
-        return {
-            message: "deleted successfully!",
-            status: true
-        }
+    deleteTaskById (id: string): void {
+        const found = this.getTaskById(id);
+        this.tasks = this.tasks.filter(task => task.id !== found.id)
     }
 
     updateTaskStatus (id: string, status: TaskStatus): Tasks {
